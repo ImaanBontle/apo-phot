@@ -1,0 +1,4 @@
+v0.1:
+-----
+~ Added edited description from repository readme to notebook
+~ Removed Gaia section.
