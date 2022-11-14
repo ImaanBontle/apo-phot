@@ -1,4 +1,8 @@
+v0.1.1:
+-----
+~ Added correct annulus sizes for each image based on differing pixel scales.
+
 v0.1:
 -----
-~ Added edited description from repository readme to notebook
+~ Added edited description from repository readme to notebook.
 ~ Removed Gaia section.
