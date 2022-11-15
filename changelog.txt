@@ -1,3 +1,8 @@
+v0.1.2:
+-----
+~ Annulus sizes now adjust dynamically to the image's pixel scale, with the first image's pixel scale used as reference.
+~ Added script to update changelog with latest changes.
+~ Updated README.
 v0.1.1:
 -----
 ~ Added correct annulus sizes for each image based on differing pixel scales.
