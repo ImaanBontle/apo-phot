@@ -1,1 +1,3 @@
-~ Re-added missing scripts
+~ Restored a temporary (incorrect) alignment file for datasets where apertures are already provided. Needs an urgent feature branch for implementing whether or not to re-align images based on presence of target acquisition.
+~ Temporarily commented out source RA, Dec for apertures given. Will need to be implemented in a later commit.
+~ Some galaxies have non-integer IDs (bad shutters), so have temporarily limited range of loop while testing.
