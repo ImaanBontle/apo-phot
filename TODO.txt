@@ -1,0 +1,4 @@
+- Implement MEDIUM images with dynamic extensions, so can accurately test results
+- Make alignment stars optional
+- Include source RA, Dec for aperture provided
+- Adjust fits file to remove bad shutters
