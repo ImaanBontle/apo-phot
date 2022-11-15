@@ -1,0 +1,3 @@
+~ Annulus sizes now adjust dynamically to the image's pixel scale, with the
+first image's pixel scale used as reference.
+~ Added script to update changelog with latest changes
