@@ -38,15 +38,12 @@ The code is broken up into three sections.
     5. Highlight (click on) the science plan within the Plan Selection section (usually the third of three).
     6. Once highlighted, go to the menu bar and click File..., Export..., then choose 'MSA Target Info [.csv]')
    
-   **Each table should contain:**
+2. **Each table should contain:**
     - The source IDs and coordinates in RA, Dec.
     - The aperture angle
     - The offsets of the sources within the aperture (in decimal percentages).
 
-2. **Provide a list of identifiers/names for each photometry band image.**
-3. **Provide a list of IDs and radii for any sources to which you'd like to apply a unique annulus size**
-
-   This is used to estimate the local background noise in the sky region surrounding the source - the code sigma-clips this estimate to prevent other sources from incorrectly contributing to the estimate, but sometimes you may wish to tweak the sky region manually for some sources and this can be achieved here).
+3. **Provide a list of identifiers/names for each photometry band image.**
 
 It is also recommended that you **run the demo code at least once on a new dataset** before running the full code (always restart the kernel first to clear variables from the demo). There are a few reasons this is a good idea:
 - You may wish to check all the calculations are working correctly for a new dataset.
