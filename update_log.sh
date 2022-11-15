@@ -8,7 +8,7 @@ fi
 echo v${version}: >> tmp.txt
 echo ----- >> tmp.txt
 cat changes.txt >> tmp.txt
-echo "" >> tmp.txt
+echo -e "\n" >> tmp.txt
 cat changelog.txt >> tmp.txt
 mv changelog.txt oldchanges.txt
 mv tmp.txt changelog.txt
