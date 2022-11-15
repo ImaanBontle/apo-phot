@@ -1,1 +1,6 @@
 ~ Re-added missing scripts
+~ Minor tweaks to code efficiency
+~ Prepared environment to accept necessary files (no changes to images yet)
+~ Code accepts a FITS table with RA/Dec of each corner of the aperture, followed by the source ID and then the aperture angle
+~ Branched main code into two different routes at execution time by adding a flag-check for whether aperture coordinates have been provided
+~ Subdivided most of the original main function into smaller sub-functions so the main function is dedicated to handling the different input cases
