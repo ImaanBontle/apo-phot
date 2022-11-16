@@ -3,4 +3,5 @@
 - Make alignment stars optional
 - Include source RA, Dec for aperture provided
 - Adjust fits file to remove bad shutters
-- Add demo folder with relevant SMACS files, since the MEDIUM file are way too big and slow down the calculations a lot
+- Add demo folder with relevant SMACS files, since the MEDIUM file areway too big and slow down the calculations a lot
+- Need to optimise the matrix calculations so that large images are efficient
