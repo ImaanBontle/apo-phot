@@ -1,4 +1,6 @@
-- Implement MEDIUM images with dynamic extensions, so can accurately test results
+- (MOSTLY DONE) Implement MEDIUM images with dynamic extensions, so can accurately test results
+	- Need to make sure photometry calculation isn't affected
 - Make alignment stars optional
 - Include source RA, Dec for aperture provided
 - Adjust fits file to remove bad shutters
+- Add demo folder with relevant SMACS files, since the MEDIUM file are way too big and slow down the calculations a lot
