@@ -3,4 +3,6 @@
 ~ Prepared environment to accept necessary files (no changes to images yet)
 ~ Code accepts a FITS table with RA/Dec of each corner of the aperture, followed by the source ID and then the aperture angle
 ~ Branched main code into two different routes at execution time by adding a flag-check for whether aperture coordinates have been provided
-~ Subdivided most of the original main function into smaller sub-functions so the main function is dedicated to handling the different input cases
+~ Subdivided most of the original main function into smaller sub-functions so the main function is dedicated to handling the different input cases~ Restored a temporary (incorrect) alignment file for datasets where apertures are already provided. Needs an urgent feature branch for implementing whether or not to re-align images based on presence of target acquisition.
+~ Temporarily commented out source RA, Dec for apertures given. Will need to be implemented in a later commit.
+~ Some galaxies have non-integer IDs (bad shutters), so have temporarily limited range of loop while testing.
