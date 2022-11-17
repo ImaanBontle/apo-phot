@@ -12,3 +12,7 @@
 ~ Added alignment flag for when user does not provide alignment stars
 ~ Added exception for when user does not list any custom ID annuli, so the code runs without error
 ~ Added third errflag option (None) which disables photometry error estimate. This should save time on very large images.
+~ Removed masked array from image arrays, as this slows down computation and is not needed except for image statistics. Images should implement this separately if still needed
+~ Implemented cutout postage stamps to speed up photometry calculations
+~ Switched background flux calculation to a flux per square pixel rather than a mean, so that the calculation is performed with exact pixel accuracy (otherwise photutils uses pixel centres)
+~ Renamed AlignFlag values to make more intuitive sense
