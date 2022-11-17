@@ -1,6 +1,9 @@
 - (MOSTLY DONE) Implement MEDIUM images with dynamic extensions, so can accurately test results
 	- Need to make sure photometry calculation isn't affected
-- Make alignment stars optional
-- Include source RA, Dec for aperture provided
-- Adjust fits file to remove bad shutters
-- Add demo folder with relevant SMACS files, since the MEDIUM file are way too big and slow down the calculations a lot
+- (DONE) Make alignment stars optional
+- Include source RA, Dec for apertures provided case
+- Adjust input fits file to remove bad shutters
+- Add demo folder with relevant SMACS files, since the MEDIUM file areway too big and slow down the calculations a lot
+- (DONE) Need to optimise the matrix calculations so that large images are efficient
+	- Used a postage stamp cutout centred around the source, reduces computation time by 10x.
+	- But watch-out! Postage stamp needs to be centred directly on the pixel centre, or it will interpolate, which messes up your calculations. So needed to calculate the new coordinates with respect to the math.floored cutout box.
