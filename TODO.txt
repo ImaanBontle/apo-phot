@@ -1,4 +1,5 @@
 - (priority) If input apertures are illuminated, add flag for illuminated case which bypasses geometry calculations.
+- (high) Implement recalculation of angle from aperture corners, as this differs slightly from planned angle.
 - (high) Clean up test-results from notebook.
 - (medium) Include source RA, Dec for the apertures-provided case
 - (medium) Adjust input fits file to remove bad shutters
