@@ -1,3 +1,5 @@
+v0.2.0
+-----
 ~ Re-added missing scripts
 ~ Minor tweaks to code efficiency
 ~ Prepared environment to accept necessary files (no changes to images yet)
