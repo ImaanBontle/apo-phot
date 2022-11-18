@@ -1,0 +1,1 @@
+- Re-implemented source co-ordinates in the apertures-provided case. Annuli are now centred on the source again.
