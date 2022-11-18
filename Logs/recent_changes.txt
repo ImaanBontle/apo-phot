@@ -1,2 +1,2 @@
 - Cleaned repository, added separate utilities, scripts, and logs folders.
-- Added utility notebook 'Prep_Apertures.ipynb' which prepares aperture corners for apodised photometry.
+- Added utility notebook 'Prep_Apertures.ipynb' which prepares aperture corners for apodised photometry.- Re-implemented source co-ordinates in the apertures-provided case. Annuli are now centred on the source again.
