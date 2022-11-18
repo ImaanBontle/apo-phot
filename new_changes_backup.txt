@@ -1,4 +1,2 @@
-~ Removed masked array from image arrays, as this slows down computation and is not needed except for image statistics. Images should implement this separately if still needed
-~ Implemented cutout postage stamps to speed up photometry calculations
-~ Switched background flux calculation to a flux per square pixel rather than a mean, so that the calculation is performed with exact pixel accuracy (otherwise photutils uses pixel centres)
-~ Renamed AlignFlag values to make more intuitive sense
+- Added ability to differentiate between physical and illuminated input apertures. If illuminated, the aperture will not be recalculated and instead code proceeds directly to the photometry. ApFlag updated appropriately (False: no apertures provided, "Physical": physical apertures provided, "Illuminated": illuminated apertures provided).
+- Implemented manual aperture angle calculation if the apertures are provided; more accurate than using planned angles.
