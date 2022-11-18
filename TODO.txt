@@ -1,7 +1,7 @@
 - (medium) Include source RA, Dec for the apertures-provided case
-- (medium) Adjust input fits file to remove bad shutters
 - (medium) Clean up unnecessary calculations (e.g. defining the physical aperture). Will require major rewrite.
 - (low) Add demo folder with relevant SMACS files, since the MEDIUM file areway too big and slow down the calculations a lot
+- (DONE) Adjust input fits file to remove bad shutters
 - (DONE) If input apertures are illuminated, add flag for illuminated case which bypasses geometry calculations.
 - (DONE) Implement recalculation of angle from aperture corners, as this differs slightly from planned angle.
 - (DONE) Clean up test-results from notebook.
