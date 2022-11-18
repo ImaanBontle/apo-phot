@@ -1,20 +1,5 @@
-v0.2.0
+v0.3.0
 -----
-~ Re-added missing scripts
-~ Minor tweaks to code efficiency
-~ Prepared environment to accept necessary files (no changes to images yet)
-~ Code accepts a FITS table with RA/Dec of each corner of the aperture, followed by the source ID and then the aperture angle
-~ Branched main code into two different routes at execution time by adding a flag-check for whether aperture coordinates have been provided
-~ Subdivided most of the original main function into smaller sub-functions so the main function is dedicated to handling the different input cases
-~ Restored a temporary (incorrect) alignment file for datasets where apertures are already provided. Needs an urgent feature branch for implementing whether or not to re-align images based on presence of target acquisition.
-~ Temporarily commented out source RA, Dec for apertures given. Will need to be implemented in a later commit.
-~ Some galaxies have non-integer IDs (bad shutters), so have temporarily limited range of loop while testing.
-~ Added source, alignment and working directories as variables, so this can be customised by the user.
-~ Added image file preview, so user can decide which extensions to include. Unfortunately, no way to make this truly dynamic yet.
-~ Added alignment flag for when user does not provide alignment stars
-~ Added exception for when user does not list any custom ID annuli, so the code runs without error
-~ Added third errflag option (None) which disables photometry error estimate. This should save time on very large images.
-~ Removed masked array from image arrays, as this slows down computation and is not needed except for image statistics. Images should implement this separately if still needed
-~ Implemented cutout postage stamps to speed up photometry calculations
-~ Switched background flux calculation to a flux per square pixel rather than a mean, so that the calculation is performed with exact pixel accuracy (otherwise photutils uses pixel centres)
-~ Renamed AlignFlag values to make more intuitive sense
+- Added aperture corners to output in all cases, for easier cross-referencing with input catalogues.
+- Added auto-overwrite for calculations, to save time. May add flag later.- Added ability to differentiate between physical and illuminated input apertures. If illuminated, the aperture will not be recalculated and instead code proceeds directly to the photometry. ApFlag updated appropriately (False: no apertures provided, "Physical": physical apertures provided, "Illuminated": illuminated apertures provided).
+- Implemented manual aperture angle calculation if the apertures are provided; more accurate than using planned angles.
