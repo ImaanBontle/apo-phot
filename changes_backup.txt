@@ -1,2 +1,3 @@
 - Added aperture corners to output in all cases, for easier cross-referencing with input catalogues.
-- Added auto-overwrite for calculations, to save time. May add flag later.
+- Added auto-overwrite for calculations, to save time. May add flag later.- Added ability to differentiate between physical and illuminated input apertures. If illuminated, the aperture will not be recalculated and instead code proceeds directly to the photometry. ApFlag updated appropriately (False: no apertures provided, "Physical": physical apertures provided, "Illuminated": illuminated apertures provided).
+- Implemented manual aperture angle calculation if the apertures are provided; more accurate than using planned angles.
