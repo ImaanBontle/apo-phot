@@ -1,1 +1,2 @@
-- Re-implemented source co-ordinates in the apertures-provided case. Annuli are now centred on the source again.
+- Catalogue visit loop now depends on length of visit list, so that you can run singular/multiple visit catalogues without problem
+- Added aperture area to visit output
