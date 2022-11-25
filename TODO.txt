@@ -1,6 +1,7 @@
-- (medium) Merge file imports into code loops (i.e. don't open more than one image at a time)
 - (medium) Clean up unnecessary calculations (e.g. defining the physical aperture). Will require major rewrite.
-- (low) Add demo folder with relevant SMACS files, since the MEDIUM file areway too big and slow down the calculations a lot
+- (low) Add demo folder with relevant SMACS files, since the MEDIUM files are way too big and slow down the calculations a lot
+- (DONE) Merge file imports into code loops (i.e. don't open more than one image at a time)
+	- Do this in a way that python will automatically clear data arrays from memory i.e. no object references are leftover between loops, so the loop should call a sub-function that loads the image and then calls sub-routines for the calculations and writing of tables, before returning to the main function and continuing to the next loop.
 - (DONE) Include source RA, Dec for the apertures-provided case
 - (DONE) Adjust input fits file to remove bad shutters
 - (DONE) If input apertures are illuminated, add flag for illuminated case which bypasses geometry calculations.
