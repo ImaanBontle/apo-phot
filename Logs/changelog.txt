@@ -1,3 +1,12 @@
+v0.5.0
+-----
+- Optimised code slightly.
+- Cleaned up strings inside tables and dictionaries, to make them more readable.
+- Added nominal pixel area and average flux per area per count to output image summary file (taken from image headers).
+- Renamed Offset_summary.fits to Summary.fits, to better reflect its' intended purpose.
+- Reworked most column headings to be more intuitive to the end-user.
+
+
 v0.4.0
 -----
 - Catalogue visit loop now depends on length of visit list, so that you can run singular/multiple visit catalogues without problem
