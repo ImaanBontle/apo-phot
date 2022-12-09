@@ -1,5 +1,0 @@
-- Optimised code slightly.
-- Cleaned up strings inside tables and dictionaries, to make them more readable.
-- Added nominal pixel area and average flux per area per count to output image summary file (taken from image headers).
-- Renamed Offset_summary.fits to Summary.fits, to better reflect its' intended purpose.
-- Reworked most column headings to be more intuitive to the end-user.
