@@ -1,3 +1,7 @@
+***NOTE: The README is partly outdated and currently applies to JWST data without associated astrometry. Support for sources with existing aperture coordinates has been added to the code, but not officially documented. This documentation will be added in the future.***
+
+***In the meantime, you can view the relevant input parameters in the Environment Prep section of the notebook.***
+
 # Apo Phot
 This code takes NIRCam photometry images and performs apodised photometry (estimation of the flux through each NIRSpec aperture) on the given list of NIRSpec sources. It does this by overlaying the apertures on the sources, calculating the total flux through the aperture, and subtracting an estimated local background flux in the nearby sky region. It also provides an uncertainty estimate on the fluxes themselves.
 
