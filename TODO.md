@@ -2,7 +2,7 @@
 
 ## High Priority
 
-- [ ] Add flux-converted photometry to output tables.
+- [x] Add flux-converted photometry to output tables.
 
 ## Medium Priority
 
