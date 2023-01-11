@@ -9,10 +9,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Planned
 
-- Add flux-converted photometry to output files.
+
 
 ### Added
 
+- Add flux-converted photometry to output files.
 - Improved Changelog system.
 - Improved output naming scheme and added units to columns.
 
