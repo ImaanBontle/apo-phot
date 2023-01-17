@@ -1,13 +1,19 @@
+<!--About-->
+# About This README <a id="top"></a>
+
+*The README explains how the apodised photometry output tables are structured, what type of data each table contains and where the most important values can be found.*
+
+This document has the following structure:
+
+- First, [an overview is provided](#overview) of each of the files and the types of data they contain.
+- This is followed by a [more detailed breakdown](#files) of each of the files. This includes an exhaustive list of the values stored in each column, their units, the naming convention for the files, and other relevant information.
+
+Readers can jump to any of the sections using the [table of contents](#contents) below.
+
+In most cases, the average reader can focus primarily on the [overview](#overview) and [results breakdown](#results) sections, ignoring the other sections since they describe files which are useful only in certain scenarios.
+
 <!--Table of Contents-->
-# Apodised Photometry <a id="contents"></a>
-
-The output folders contain several FITS tables containing the apodised photometry for each NIRCam filter. This README document explains how the output files are structured, what type of data they contain and where the most important data can be found.
-
-This README has the following structure: first, an [overview](#overview) is provided for each of the files and the types of data they contain. Then this is followed by a [more detailed breakdown](#files) of each of the files, providing an exhaustive list of the values stored within, their units, the file naming convention and any other information relevant to the reader.
-
-In most cases, readers can focus on the [overview](#overview) and [results breakdown](#results) sections and ignore the rest, as they describe files which are often not useful except under certain circumstancese.
-
-Jump to any of the sections in this README by using the table below.
+# Table of Contents <a id="contents"></a>
 
 - [Overview](#overview)
 - [Files](#files)
@@ -16,35 +22,35 @@ Jump to any of the sections in this README by using the table below.
 	- [Parameters](#params)
 
 <!--Overview of the Files-->
-## Overview of Output Files <a id="overview"></a>
+# Overview of Output Files <a id="overview"></a>
 
 *This section provides an overview of the output files.*
 
-For each source appearing in a filter, the apodised photometry (the total galaxy flux passing through the MSA slit) was calculated and averaged across all the available pointings. This results in an averaged apodised flux for each photometry band. This process is repeated separately for each dataset and the results for each stored in a dedicated folder (e.g. *SMACS-ERC* or *HST-Deep*).
+For each source appearing in a filter, the apodised photometry (the total galaxy flux passing through the MSA slit) was calculated and averaged across all the available pointings. This resulted in an averaged apodised flux for each photometry band. This process is repeated separately for each dataset and the results for each stored in a dedicated folder (e.g. *SMACS-ERC* or *HST-Deep*).
 
 Within each folder, there are three types of FITS files:
 
-1. [A summary file for each filter](#results) (e.g. *F400W_summary.fits*) - This contains the apodised fluxes averaged across all the available pointings of the MSA for a given filter. ***This is the most useful file for most readers.***
-2. [A detailed breakdown for each pointing](#details) (e.g. *F400W_8.fits*) - These provide more detailed information on each observation for a given filter. Most of this information isn't relevant but is included for completeness.
-3. [A separate parameters file](#params) (i.e. *parameters.fits*) - This contains all the extra information used for the flux calculations, such as conversion and rescaling factors. This is mostly relevant for debugging purposes, but can be consulted if needed.
+1. [A summary file for each filter](#results) (e.g. *F400W_summary.fits*) - This contains the apodised fluxes averaged across all the available pointings of the MSA for a given filter. ***This is the most relevant file for the average reader.***
+2. [A detailed breakdown for each pointing in a filter](#details) (e.g. *F400W_8.fits*) - These provide more detailed information on each observation for a given filter. Most of this information isn't relevant to the reader but is included for the sake of completeness.
+3. [A separate parameters file](#params) (i.e. *parameters.fits*) - This contains all the information needed for the original flux calculations, including values like the conversion and rescaling factors. These parameters are included mostly for debugging purposes.
 
-In most cases, readers can focus on the [summary files for each filter](#results) and safely ignore the other files. These summary files contain the apodised fluxes for each galaxy, averaged across all the pointings for a given filter, while all the remaining files are supplementary in nature and likely not very interesting.
+*See the next section for a detailed breakdown of each file.*
 
 <div align="right">
 
-[[Back to Top](#contents)]
+[[Back to Contents](#contents)]
 
 </div>
 
 <!--Detailed File Breakdowns-->
-## File Types <a id="files"></a>
+# File Types <a id="files"></a>
 
-*This section contains a detailed breakdown of each FITS table.*
+*This section contains a detailed breakdown of each FITS table. For more details regarding the error estimations, see the [AstroPy Documentation][astropy-error-link].*
 
 <!--Results per Filter-->
-### Results Files <a id="results"></a>
+## Results Files <a id="results"></a>
 
-These tables contain the most relevant results for each of the galaxies in a given filter. The files are named *\<filtername\>_summary.fits*, where *filtername* refers to the name of the relevant photometric filter (e.g. *F200W*). Flux densities are provided in mega Janskies per steradian and fluxes in micro Janskies. For more details regarding the error estimations, see the [AstroPy Documentation][astropy-error-link].
+These tables contain the most relevant results for each of the galaxies in a given filter. The files are named *\<filtername\>_summary.fits*, where *filtername* refers to the name of the relevant photometric filter (e.g. *F200W*). Flux densities are provided in MJy/sr and fluxes are provided in µJy.
 
 Each table contains the following columns:
 
@@ -60,10 +66,16 @@ Each table contains the following columns:
 - **Actual Flux:** the background-subtracted flux passing through the aperture, in units of micro Janskies.
 - **Flux Error:** an estimate of the error in the actual flux, in units of micro Janskies.
 
-<!--Results per Observation-->
-### Detailed Output Files <a id="details"></a>
+<div align="right">
 
-These tables contain detailed calculations for every available pointing in each filter. The following naming convention is used: *\<filtername\>_\<visitname\>.fits*, where *filtername* refers to the name of the relevant photometric filter (e.g.*F200W*) and *visitname* refers to the internal name used to refer to the observation (e.g. *12* or *c1-2e2n3-G395M-F290LP*. Offsets are provided as decimal percentages. Coordinates and areas are provided in pixels. Flux densities are provided in mega Janskies per steradian and fluxes in micro Janskies. For more details regarding the error estimations, see the [AstroPy Documentation][astropy-error-link].
+[[Back to Contents](#contents)]
+
+</div>
+
+<!--Results per Observation-->
+## Detailed Output Files <a id="details"></a>
+
+These tables contain detailed calculations for every available pointing in each filter. The following naming convention is used: *\<filtername\>_\<visitname\>.fits*, where *filtername* refers to the name of the relevant photometric filter (e.g. *F200W*) and *visitname* refers to the internal name used for the pointing (e.g. *12* or *c1-2e2n3-G395M-F290LP*). Offsets are provided as decimal percentagesi, coordinates and areas are provided in pixels, flux densities are provided in MJy/sr and fluxes are provided in µJy.
 
 The following columns are contained in each table:
 
@@ -89,10 +101,16 @@ The following columns are contained in each table:
 - **Actual Flux:** the background-subtracted flux passing through the aperture, in units of micro Janskies.
 - **Flux Error:** an estimate of the error in the actual flux, in units of micro Janskies.
 
-<!--Calculation Parameters-->
-### Parameters File <a id="params"></a>
+<div align="right">
 
-This table contains supplementary information related to the photometry calculations. This file is always named *parameters.fits*.
+[[Back to Contents](#contents)]
+
+</div>
+
+<!--Calculation Parameters-->
+## Parameters File <a id="params"></a>
+
+This table contains supplementary information related to the photometry calculations for each filter. This file is always named *parameters.fits*.
 
 The following columns are included in the output:
 
@@ -104,7 +122,7 @@ The following columns are included in the output:
 
 <div align="right">
 
-[[Back to Top](#contents)]
+[[Back to Contents](#contents)]
 
 </div>
 
