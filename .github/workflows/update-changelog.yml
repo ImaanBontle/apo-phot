@@ -30,13 +30,9 @@ jobs:
           branch: ${{ github.event.release.target_commitish }}
           commit_message: 'docs(changelog): Update CHANGELOG'
           file_pattern: CHANGELOG.md
-          push_options: '--force'
       
       - name: Switch to Push Branch
         run: git switch -c push-to-develop
-          
-      - name: Authenticate with GitHub
-        run: gh auth login --with-token
         
       - name: Push Branch to Remote
         run: git push -u origin push-to-develop
