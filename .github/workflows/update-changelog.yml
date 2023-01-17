@@ -3,6 +3,9 @@ name: "Update Changelog"
 on:
   release:
     types: [released]
+    
+env:
+  GH_TOKEN: ${{ secrets.ImaanBontleRepoActionToken }}
 
 jobs:
   update:
@@ -14,7 +17,6 @@ jobs:
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.release.target_commitish }}
-          token: ${{ secrets.ImaanBontleRepoActionToken }}
 
       - name: Update CHANGELOG
         uses: stefanzweifel/changelog-updater-action@v1
@@ -31,30 +33,21 @@ jobs:
       
       - name: Switch to Push Branch
         run: git switch -c push-to-develop
-        env:
-          GH_TOKEN: ${{ secrets.ImaanBontleRepoActionToken }}
+          
+      - name: Authenticate with GitHub
+        run: gh auth login --with-token
         
       - name: Push Branch to Remote
         run: git push -u origin push-to-develop
-        env:
-          GH_TOKEN: ${{ secrets.ImaanBontleRepoActionToken }}
       
       - name: Create Pull Request to Develop
         run: gh pr create -t PushChangelog -b "" -l skip-changelog -l patch
-        env:
-          GH_TOKEN: ${{ secrets.ImaanBontleRepoActionToken }}
         
       - name: Enable Auto-Merge
         run: gh pr merge push-to-develop --auto --rebase
-        env:
-          GH_TOKEN: ${{ secrets.ImaanBontleRepoActionToken }}
         
       - name: Sleep for 120 seconds
         run: sleep 120
-        env:
-          GH_TOKEN: ${{ secrets.ImaanBontleRepoActionToken }}
         
       - name: Delete Branch
         run: git push -d origin push-to-develop
-        env:
-          GH_TOKEN: ${{ secrets.ImaanBontleRepoActionToken }}
