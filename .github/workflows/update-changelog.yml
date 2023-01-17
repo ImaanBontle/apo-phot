@@ -41,11 +41,8 @@ jobs:
       - name: Create Pull Request to Develop
         run: gh pr create -t PushChangelog -b "" -l skip-changelog -l patch
         
-      - name: Enable Auto-Merge
-        run: gh pr merge push-to-develop --auto --rebase
+      - name: Sleep for 20 seconds
+        run: sleep 10
         
-      - name: Sleep for 120 seconds
-        run: sleep 120
-        
-      - name: Delete Branch
-        run: git push -d origin push-to-develop
+      - name: Close request
+        run: gh pr close push-to-develop
