@@ -34,9 +34,6 @@ jobs:
       
       - name: Switch to Push Branch
         run: git switch -c push-to-develop
-          
-      - name: Authenticate with GitHub
-        run: gh auth login --with-token
         
       - name: Push Branch to Remote
         run: git push -u origin push-to-develop
