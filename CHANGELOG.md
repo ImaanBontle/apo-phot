@@ -5,19 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/ImaanBontle/apo-phot/commits/compare/v0.6.4...HEAD)
+## [Unreleased](https://github.com/ImaanBontle/apo-phot/commits/compare/v0.6.2...HEAD)
 
 ### Planned
 
 ### Added
-
-## [v0.6.4](https://github.com/ImaanBontle/apo-phot/commits/compare/v0.6.2...v0.6.4) - 2023-01-17
-
-### What Changed 🚀
-
-None for users.
-
-**Full Changelog**: https://github.com/ImaanBontle/apo-phot/compare/v0.6.3...v0.6.4
 
 ## [v0.6.2](https://github.com/ImaanBontle/apo-phot/commits/compare/v0.6.1...v0.6.2) - 2023-01-17
 
