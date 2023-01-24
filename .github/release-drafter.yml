@@ -10,11 +10,13 @@ template: >
 
   $CHANGES
   
-  ## Thanks to all the contributors
+  ## Thanks to All the Contributors
+
+  DELETE THIS IF THERE ARE NO CONTRIBUTORS
 
   $CONTRIBUTORS
 
-  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+  > **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
 categories:
   - title: 💥 Breaking Changes
     labels:
@@ -70,7 +72,7 @@ categories:
 change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
 change-title-escapes: \<*_&
 exclude-contributors: 
-  - '$OWNER'
+  - 'ImaanBontle'
 version-resolver:
   major:
     labels:
