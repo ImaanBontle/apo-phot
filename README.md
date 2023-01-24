@@ -54,3 +54,19 @@ It is also recommended that you **run the demo code at least once on a new datas
 - Some bands have a different pixel size to the default (F200W and upwards), and it's important to check that radii are being correctly adjusted for this (the radius factors for each image are listed below and can be tweaked).
 - You may wish to compare the aperture positions against Aladin (can be done in the APT software too, just send each science visit separately to Aladin via the MSA Planning Tool Plans tab).
 - Additionally, if you have not used this code before, the demo can be helpful for understanding how each step works, especially since you may need to adjust the code to your dataset.
+
+## Contributors
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+<!--
+LIST OF CONTRIBUTIONS
+https://allcontributors.org/docs/en/emoji-key
+-->
