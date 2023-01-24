@@ -50,11 +50,11 @@ This process is repeated for each dataset and the results for each stored in a d
 <!--Results Summary-->
 ## Summary Table <a id="summary"></a>
 
-This table contains the average apodised flux per filter (averaged across the available MSA pointings) for each galaxy. The file is named *summary.fits*. Fluxes are provided in µJy. The following columns are included:
+This table contains the average apodised flux per filter (averaged across the available MSA pointings) for each galaxy. The file is named *summary.fits*. Fluxes are provided in nJy. The following columns are included:
 
 - **ID:** the ID of the galaxy.
-- ***filtername*** **Flux**: the background-subtracted flux passing through the aperture, in units of micro Janskies, where *filtername* refers to the name of the filter. A separate column is provided for every filter.
-- ***filtername*** **Error**: an estimate of the error in the flux, in units of micro Janskies, where *filtername* refers to the name of the filter. A separate column is provided for every filter.
+- ***filtername*** **Flux**: the background-subtracted flux passing through the aperture, in units of nano Janskies, where *filtername* refers to the name of the filter. A separate column is provided for every filter.
+- ***filtername*** **Error**: an estimate of the error in the flux, in units of nano Janskies, where *filtername* refers to the name of the filter. A separate column is provided for every filter.
 
 <div align="right">
 
@@ -65,7 +65,7 @@ This table contains the average apodised flux per filter (averaged across the av
 <!--Results per Filter-->
 ## Results per Filter <a id="results"></a>
 
-These tables contain the most relevant results for each of the galaxies in a given filter. The files are named *\<filtername\>_summary.fits*, where *filtername* refers to the name of the relevant photometric filter (e.g. *F200W*). Flux densities are provided in MJy/sr and fluxes are provided in µJy.
+These tables contain the most relevant results for each of the galaxies in a given filter. The files are named *\<filtername\>_summary.fits*, where *filtername* refers to the name of the relevant photometric filter (e.g. *F200W*). Flux densities are provided in MJy/sr and fluxes are provided in nJy.
 
 Each table contains the following columns:
 
@@ -76,10 +76,10 @@ Each table contains the following columns:
 - **Background Density/Pixel:** an estimate of the background flux density in the region surrounding the galaxy, in units of mega Janskies per steradian per pixel squared.
 - **Actual Density:** the background-subtracted flux density passing through the aperture, in units of mega Janskies per steradian.
 - **Density Error:** an estimate of the error in the actual flux density, in units of mega Janskies per steradian.
-- **Total Flux:** the total flux passing through the aperture, in units of micro Janskies.
-- **Background Flux/Pixel:** an estimate of the background flux in the region surrounding the galaxy, in units of micro Janskies per pixel squared.
-- **Actual Flux:** the background-subtracted flux passing through the aperture, in units of micro Janskies.
-- **Flux Error:** an estimate of the error in the actual flux, in units of micro Janskies.
+- **Total Flux:** the total flux passing through the aperture, in units of nano Janskies.
+- **Background Flux/Pixel:** an estimate of the background flux in the region surrounding the galaxy, in units of nano Janskies per pixel squared.
+- **Actual Flux:** the background-subtracted flux passing through the aperture, in units of nano Janskies.
+- **Flux Error:** an estimate of the error in the actual flux, in units of nano Janskies.
 
 <div align="right">
 
@@ -90,7 +90,7 @@ Each table contains the following columns:
 <!--Results per Pointing-->
 ## Results per Pointing <a id="details"></a>
 
-These tables contain detailed calculations for every available pointing in each filter. The following naming convention is used: *\<filtername\>_\<visitname\>.fits*, where *filtername* refers to the name of the relevant photometric filter (e.g. *F200W*) and *visitname* refers to the internal name used for the pointing (e.g. *12* or *c1-2e2n3-G395M-F290LP*). Offsets are provided as decimal percentagesi, coordinates and areas are provided in pixels, flux densities are provided in MJy/sr and fluxes are provided in µJy.
+These tables contain detailed calculations for every available pointing in each filter. The following naming convention is used: *\<filtername\>_\<visitname\>.fits*, where *filtername* refers to the name of the relevant photometric filter (e.g. *F200W*) and *visitname* refers to the internal name used for the pointing (e.g. *12* or *c1-2e2n3-G395M-F290LP*). Offsets are provided as decimal percentagesi, coordinates and areas are provided in pixels, flux densities are provided in MJy/sr and fluxes are provided in nJy.
 
 The following columns are contained in each table:
 
@@ -111,10 +111,10 @@ The following columns are contained in each table:
 - **Background Density/Pixel:** an estimate of the background flux density in the region surrounding the galaxy, in units of mega Janskies per steradian per pixel squared.
 - **Actual Density:** the background-subtracted flux density passing through the aperture, in units of mega Janskies per steradian.
 - **Density Error:** an estimate of the error in the actual flux density, in units of mega Janskies per steradian.
-- **Total Flux:** the total flux passing through the aperture, in units of micro Janskies.
-- **Background Flux/Pixel:** an estimate of the background flux in the region surrounding the galaxy, in units of micro Janskies per pixel squared.
-- **Actual Flux:** the background-subtracted flux passing through the aperture, in units of micro Janskies.
-- **Flux Error:** an estimate of the error in the actual flux, in units of micro Janskies.
+- **Total Flux:** the total flux passing through the aperture, in units of nano Janskies.
+- **Background Flux/Pixel:** an estimate of the background flux in the region surrounding the galaxy, in units of nano Janskies per pixel squared.
+- **Actual Flux:** the background-subtracted flux passing through the aperture, in units of nano Janskies.
+- **Flux Error:** an estimate of the error in the actual flux, in units of nano Janskies.
 
 <div align="right">
 
