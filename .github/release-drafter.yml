@@ -15,6 +15,10 @@ template: >
   $CHANGES
   
   
+  ## Thanks to all the contributors
+
+  $CONTRIBUTORS
+
   **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
 categories:
   - title: 💥 Breaking Changes
@@ -70,6 +74,8 @@ categories:
     collapse-after: 5
 change-template: "- $TITLE (#$NUMBER)"
 change-title-escapes: \<*_&
+exclude-contributors: 
+  - '$OWNER'
 version-resolver:
   major:
     labels:
