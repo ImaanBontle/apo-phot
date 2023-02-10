@@ -6,16 +6,17 @@ tag-template: v$RESOLVED_VERSION
 template: >
   ## What Changed 🚀
 
-
-
   DELETE THIS IF THERE ARE NO HIGHLIGHTS
-
-
 
   $CHANGES
   
-  
-  **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
+  ## Thanks to All the Contributors
+
+  DELETE THIS IF THERE ARE NO CONTRIBUTORS
+
+  $CONTRIBUTORS
+
+  > **Full Changelog**: https://github.com/$OWNER/$REPOSITORY/compare/$PREVIOUS_TAG...v$RESOLVED_VERSION
 categories:
   - title: 💥 Breaking Changes
     labels:
@@ -27,16 +28,16 @@ categories:
     labels:
       - feature
       - enhancement
-  - title: ✏️ Typos
+  - title: ⚠️ Changes
     labels:
-      - typo
+      - changed
   - title: 🐛 Bug Fixes
     labels:
       - fix
       - bug
-  - title: ⚠️ Changes
+  - title: ✏️ Typos
     labels:
-      - changed
+      - typo
   - title: 🗑️ Deprecated
     labels:
       - deprecated
@@ -68,8 +69,10 @@ categories:
       - deps
       - dependencies
     collapse-after: 5
-change-template: "- $TITLE (#$NUMBER)"
+change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
 change-title-escapes: \<*_&
+exclude-contributors: 
+  - 'ImaanBontle'
 version-resolver:
   major:
     labels:
