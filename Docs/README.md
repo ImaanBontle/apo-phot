@@ -1,40 +1,50 @@
 <!--About-->
 # About This README <a id="top"></a>
 
-The README explains how the apodised photometry output tables are structured, what type of data each table contains and where the most important values can be found.
+*The README explains how the apodised photometry output tables are structured, what type of data each table contains and where the most important values can be found.*
 
-This document has the following structure:
+The motivation for the apodised fluxes from the NIRCam images, measuring the broadband light over exactly the same area of the sky (as probed by the MSA shutter), is to check the integrated spectral flux to test the flux calibration, and also to calculate the equivalent width of emission lines even in the cases where the continuum in the spectrum is weak or undetected.
 
-- First, [an overview is provided](#overview) of each of the files and the types of data they contain.
-- Then, this is followed by a [more detailed breakdown](#files) of each of the files. This includes an exhaustive list of the values stored in each column, their units, the naming convention for the files, and other relevant information.
+We note that to use this data, one should first "undo" the slitloss correction applied to the NIRSpec-extracted spectra. For HST-Deep, these slitlosses can be found on ***INSERT REFERENCE*** (these are files used in ***REF's*** slitloss correction). In v3.0 of the spectroscopy, the slitloss correction assumed an off-centre point-source, and used the files *\*v0\_point*. These slitloss corrections are greater than 1, and hence the calibrated spectrum needs to be divided by this number for each wavelength.
 
-In most cases, the average reader can focus primarily on the [overview](#overview) and [results summary](#summary) sections and ignore the others.
+There is also a second correction that needs to be applied when undoing the slitloss corrections to account for the slightly larger PSF of NIRSpec than NIRCam at a given wavelength (due to diffraction at the aperture). We have quantified that this is on average a fractional correction of ***QUOTE EQUATION HERE*** where wavelength is provided in Angstroms ***CHECK***. After dividing the spectrum by the slitloss corrections, one would need to multiply by this fractional correction. Once this is done, the NIRSpec spectrum convolved with the filter transmission bandpass should return the same flux as seen in the apodised broadband image (subject to the correct flux calibration). Further, the fractional contribution of each emission line to the broadband apodised flux can be determined, and hence the continuum can be inferred and the equivalent width calculated for each line.
 
 <!--Table of Contents-->
 # Table of Contents <a id="contents"></a>
 
-Readers can jump to any of the sections in this README using the [table of contents](#contents) below.
+*Jump to any of the sections in this README using the table of contents below.*
+
+This document has the following structure:
+
+- First, [an overview](#overview) is provided of each of the files and the types of data they contain.
+- Then, this is followed by a more [detailed breakdown](#files) of each of the files. This breakdown includes an exhaustive list of the values stored in each column, their units, the naming convention for the files, and other relevant information.
+
+In most cases, the average reader should focus primarily on the [overview](#overview) and [results summary](#summary) sections and ignore the rest.
 
 - [Overview](#overview)
 - [File Details](#files)
-	- [Summary Table](#summary)
-	- [Results per Filter](#results)
-	- [Results per Pointing](#details)
+	- [Abridged Summary Table](#summary)
+	- [Unabridged Summary Table](#summary-detailed)
+	- [Results per Pointing](#results)
+	- [Raw Output Files](#details)
 	- [Parameters List](#params)
 
 <!--Overview of the Files-->
 # Overview of Output Files <a id="overview"></a>
 
-*This section provides an overview of the output files. See the [next section](#files) for a detailed breakdown of each file.*
+*This section provides an overview of the output files and how the data for each was calculated. See the [next section](#files) for a detailed breakdown of contents of these files.*
 
-For each galaxy, the apodised photometry (the total flux passing through the MSA slit) is calculated separately for each filter and each pointing. Afterwards, these fluxes are averaged across all available pointings for each filter to produce an average apodised flux per galaxy per photometric band. Lastly, the values for each band are compiled into a single summary table for ease of access.
+For each galaxy, the apodised photometry from the NIRCam images (the total flux passing through the MSA slit) is calculated. This is done separately for each filter and each pointing. Afterwards, these fluxes are collected into a master table of filters for each pointing. These are then further reduced by averaging across all available pointings for each filter to produce an average apodised flux per galaxy per photometric band. Finally, the values for each band are compiled into a single summary table for ease of access, with this including both an abridged and unabridged format.
 
-This process is repeated for each dataset and the results for each stored in a dedicated folder (e.g. *SMACS-ERC* or *HST-Deep*). Within each folder, there are four types of FITS files:
+This process is repeated separately for each dataset and the results for each are stored in dedicated folders (e.g. *SMACS-ERC* or *HST-Deep*). Within each folder, there are the master output files (*summary.fits*), as well as a pair of subfolders (*FilterData* and *RawData*) containing various fits tables representing each step of the process.
 
-1. [An overall results file](#summary) (i.e. *summary.fits*) &mdash; ***This is the most relevant file for the average reader.*** It contains the final apodised fluxes for each filter (where available) and for each galaxy in the dataset.
-2. [A summary file for each filter](#results) (e.g. *F400W_summary.fits*) &mdash; These files contain more detailed information on each filter, such as the background flux estimate and the source astrometry, as well as the average apodised flux across all the available pointings. This may be useful for individual source follow-ups.
-3. [A detailed breakdown for each pointing](#details) (e.g. *F400W_8.fits*) &mdash; These tables provide detailed information for each available pointing in a given filter, including the pixel coordinates, aperture dimensions and other supplementary information. Most of this data isn't relevant to the reader, but is included for completeness' sake.
-4. [A parameters file](#params) (i.e. *parameters.fits*) &mdash; This file summarises all the parameters used for the original flux calculations, including the relevant conversion and rescaling factors. These parameters are provided mostly for debugging purposes.
+The breakdown of each table is:
+
+1. [An abridged results file](#summary) (i.e. *summary.fits*) &mdash; ***This is the most relevant file for the average reader.*** It contains the final apodised fluxes for each filter (where available) and for each galaxy in the dataset, averaged across all pointings.
+2. [An unabridged results file](#summary-detailed) (i.e. *FilterData/summary_detailed.fits*) &mdash; This includes the same columns as in the abridged file, but with the additional inclusion of the background flux estimations and the total non-background-subtracted fluxes through the filters.
+3. [A detailed results file for each pointing](#results) (e.g. *FilterData/\<pointing\>_summary.fits*) &mdash; These tables, provide identical information to the unabridged results files, but for the given pointing only i.e. the tables provide the apodised fluxes, the background estimations and the non-background-subtracted flux totals for each filter without averaging across each pointing. If you are concerned about variation in the slitloss between pointings (e.g. if an object lies close to a slit edge), then these tables may be more useful to you than the abridged results file.
+4. [Raw output files for each filter](#details) (e.g. *RawData/F400W_\<pointing\>*) &mdash; These files contain the raw output used to compile the summary catalogues. Here, detailed information is provided for each available filter of a given pointing, including the pixel coordinates of the source and the aperture, the aperture dimensions and the annulus radii used for background estimates. Most of this data shouldn't be relevant except when needing to follow up on the results for individual sources and/or their slitmask data.
+5. [A parameters file](#params) (i.e. *FilterData/parameters.fits*) &mdash; This file summarises all the parameters used for the original flux calculations, including the relevant conversion and rescaling factors. These are provided mostly for debugging purposes.
 
 <div align="right">
 
@@ -45,16 +55,18 @@ This process is repeated for each dataset and the results for each stored in a d
 <!--Detailed File Breakdowns-->
 # File Types <a id="files"></a>
 
-*This section contains a detailed breakdown for each FITS table. For more details regarding the error estimations, see the [AstroPy Documentation][astropy-error-link].*
+*This section contains a detailed breakdown for each FITS table. For details regarding the error estimations, see the [AstroPy Documentation][astropy-error-link].*
 
 <!--Results Summary-->
-## Summary Table <a id="summary"></a>
+## Abridged Summary Table <a id="summary"></a>
 
-This table contains the average apodised flux per filter (averaged across the available MSA pointings) for each galaxy. The file is named *summary.fits*. Fluxes are provided in nJy. The following columns are included:
+This table contains the average apodised flux per filter (averaged across the available MSA pointings) for each galaxy. The file is named *summary.fits*. Fluxes are provided in nJy, and are provided separately for each filter. The following columns are included:
 
 - **ID:** the ID of the galaxy.
-- ***filtername*** **Flux**: the background-subtracted flux passing through the aperture, in units of nano Janskies, where *filtername* refers to the name of the filter. A separate column is provided for every filter.
-- ***filtername*** **Error**: an estimate of the error in the flux, in units of nano Janskies, where *filtername* refers to the name of the filter. A separate column is provided for every filter.
+- **RA:** the right ascension of the galaxy in degrees.
+- **Dec:** the declination of the galaxy in degrees. 
+- **Flux**: the background-subtracted flux passing through the aperture, in units of nJy.
+- **Error**: an estimate of the error in the flux, in units of nJy.
 
 <div align="right">
 
@@ -62,24 +74,23 @@ This table contains the average apodised flux per filter (averaged across the av
 
 </div>
 
-<!--Results per Filter-->
-## Results per Filter <a id="results"></a>
+<!--Detailed Results Summary-->
+## Unabridged Summary Table <a id="summary-detailed"></a>
 
-These tables contain the most relevant results for each of the galaxies in a given filter. The files are named *\<filtername\>_summary.fits*, where *filtername* refers to the name of the relevant photometric filter (e.g. *F200W*). Flux densities are provided in MJy/sr and fluxes are provided in nJy.
-
-Each table contains the following columns:
+This table contains the average apodised flux per filter (averaged across the available MSA pointings) for each galaxy, similarly to the [abridged results file](#summary). The file is named *summary_detailed.fits* and is located inside the *FilterData* subfolder. Fluxes are provided in nJy and flux densities in MJy/sr, and are provided separately for each filter. The following columns are included:
 
 - **ID:** the ID of the galaxy.
 - **RA:** the right ascension of the galaxy in degrees.
-- **Dec:** the declination of the galaxy in degrees.
-- **Total Density:** the total flux density passing through the aperture, in units of mega Janskies per steradian.
-- **Background Density/Pixel:** an estimate of the background flux density in the region surrounding the galaxy, in units of mega Janskies per steradian per pixel squared.
-- **Actual Density:** the background-subtracted flux density passing through the aperture, in units of mega Janskies per steradian.
-- **Density Error:** an estimate of the error in the actual flux density, in units of mega Janskies per steradian.
-- **Total Flux:** the total flux passing through the aperture, in units of nano Janskies.
-- **Background Flux/Pixel:** an estimate of the background flux in the region surrounding the galaxy, in units of nano Janskies per pixel squared.
-- **Actual Flux:** the background-subtracted flux passing through the aperture, in units of nano Janskies.
-- **Flux Error:** an estimate of the error in the actual flux, in units of nano Janskies.
+- **Dec:** the declination of the galaxy in degrees. 
+- **Total Flux Density:** the total flux density passing through the aperture, in units of MJy per steradian.
+- **Background Density/Pixel:** an estimate of the background flux density in the region surrounding the galaxy, in units of MJy per steradian per pixel squared.
+- **Actual Flux Density:** the background-subtracted flux density passing through the aperture, in units of MJy per steradian.
+- **Flux Density Error:** an estimate of the error in the actual flux density, in units of MJy per steradian.
+- **Total Flux:** the total flux passing through the aperture, in units of nJy.
+- **Background Flux:** an estimate of the background flux in the region surrounding the galaxy, in units of nJy per pixel squared.
+- **Actual Flux:** the background-subtracted flux passing through the aperture, in units of nJy.
+- **Flux**: the background-subtracted flux passing through the aperture, in units of nJy.
+- **Error**: an estimate of the error in the flux, in units of nJy.
 
 <div align="right">
 
@@ -88,9 +99,36 @@ Each table contains the following columns:
 </div>
 
 <!--Results per Pointing-->
-## Results per Pointing <a id="details"></a>
+## Results per Pointing <a id="results"></a>
 
-These tables contain detailed calculations for every available pointing in each filter. The following naming convention is used: *\<filtername\>_\<visitname\>.fits*, where *filtername* refers to the name of the relevant photometric filter (e.g. *F200W*) and *visitname* refers to the internal name used for the pointing (e.g. *12* or *c1-2e2n3-G395M-F290LP*). Offsets are provided as decimal percentagesi, coordinates and areas are provided in pixels, flux densities are provided in MJy/sr and fluxes are provided in nJy.
+These tables contain the most relevant results for each of the galaxies for a given pointing. The files are named *\<pointing\>_summary.fits*, where *\<pointing\>* refers to the name of the relevant photometric filter (e.g. *7*). These tables are included inside the *FilterData* folder. Flux densities are provided in MJy/sr and fluxes are provided in nJy, and are reported separately for each filter.
+
+Each table contains the following columns:
+
+- **ID:** the ID of the galaxy.
+- **RA:** the right ascension of the galaxy in degrees.
+- **Dec:** the declination of the galaxy in degrees. 
+- **Angle:** the angle of the slit on the sky in degrees.
+- **Total Flux Density:** the total flux density passing through the aperture, in units of MJy per steradian.
+- **Background Density/Pixel:** an estimate of the background flux density in the region surrounding the galaxy, in units of MJy per steradian per pixel squared.
+- **Actual Flux Density:** the background-subtracted flux density passing through the aperture, in units of MJy per steradian.
+- **Flux Density Error:** an estimate of the error in the actual flux density, in units of MJy per steradian.
+- **Total Flux:** the total flux passing through the aperture, in units of nJy.
+- **Background Flux:** an estimate of the background flux in the region surrounding the galaxy, in units of nJy per pixel squared.
+- **Actual Flux:** the background-subtracted flux passing through the aperture, in units of nJy.
+- **Flux**: the background-subtracted flux passing through the aperture, in units of nJy.
+- **Error**: an estimate of the error in the flux, in units of nJy.
+
+<div align="right">
+
+[[Back to Contents](#contents)]
+
+</div>
+
+<!--Raw Output Files-->
+## Raw Output Files <a id="details"></a>
+
+These tables contain detailed calculations for every available pointing in each filter. The following naming convention is used: *\<filter\>_\<pointing\>.fits*, where *\<filter\>* refers to the name of the relevant photometric filter (e.g. *F200W*) and *\<pointing\>* refers to the internal name used for the pointing (e.g. *12* or *c1-2e2n3-G395M-F290LP*). These files are contained within the *RawData* folder. Offsets are provided as decimal percentages, coordinates and areas are provided in pixels, flux densities are provided in MJy/sr and fluxes are provided in nJy.
 
 The following columns are contained in each table:
 
@@ -105,16 +143,16 @@ The following columns are contained in each table:
 - **Aperture Pixel, Shifted and Scaled:** the x and y pixel coordinates of the centre of the aperture for the same three cases as for the galaxy.
 - **Aperture Width and Height:** the width and height of the aperture, expressed in pixels.
 - **Aperture Corners:** the x and y pixel coordinates of the four aperture corners, after correcting any uniform shift and scaling offset between the image and the astrometry.
-- **Aperture Area:** the area of the aperture in pixels squared. This is used to scale the background estimate to the size of the aperture.
-- **Annulus Radii:** the inner and outer radii of the annulus used to estimate the background noise in the region surrounding the galaxy, expressed in pixels for the annulus centre.
-- **Total Density:** the total flux density passing through the aperture, in units of mega Janskies per steradian.
-- **Background Density/Pixel:** an estimate of the background flux density in the region surrounding the galaxy, in units of mega Janskies per steradian per pixel squared.
-- **Actual Density:** the background-subtracted flux density passing through the aperture, in units of mega Janskies per steradian.
-- **Density Error:** an estimate of the error in the actual flux density, in units of mega Janskies per steradian.
-- **Total Flux:** the total flux passing through the aperture, in units of nano Janskies.
-- **Background Flux/Pixel:** an estimate of the background flux in the region surrounding the galaxy, in units of nano Janskies per pixel squared.
-- **Actual Flux:** the background-subtracted flux passing through the aperture, in units of nano Janskies.
-- **Flux Error:** an estimate of the error in the actual flux, in units of nano Janskies.
+- **Aperture Area:** the area of the aperture in pixels squared. This is used to scale the background flux estimate to match the size of the aperture.
+- **Annulus Radii:** the inner and outer radii of the annulus used to estimate the background noise in the region surrounding the galaxy, expressed in pixels from the annulus centre.
+- **Total Density:** the total flux density passing through the aperture, in units of MJy per steradian.
+- **Background Density/Pixel:** an estimate of the background flux density in the region surrounding the galaxy, in units of MJy per steradian per pixel squared.
+- **Actual Density:** the background-subtracted flux density passing through the aperture, in units of MJy per steradian.
+- **Density Error:** an estimate of the error in the actual flux density, in units of MJy per steradian.
+- **Total Flux:** the total flux passing through the aperture, in units of nJy.
+- **Background Flux/Pixel:** an estimate of the background flux in the region surrounding the galaxy, in units of nJy per pixel squared.
+- **Actual Flux:** the background-subtracted flux passing through the aperture, in units of nJy.
+- **Flux Error:** an estimate of the error in the actual flux, in units of nJy.
 
 <div align="right">
 
@@ -125,7 +163,7 @@ The following columns are contained in each table:
 <!--Calculation Parameters-->
 ## Parameters List <a id="params"></a>
 
-This table contains supplementary information related to the photometry calculations for each filter. This file is always named *parameters.fits*.
+This table contains supplementary information related to the photometry calculations for each filter. This file is always named *parameters.fits* and is located within the *FilterData* folder.
 
 The following columns are included in the output:
 
