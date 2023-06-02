@@ -40,7 +40,7 @@ This process is repeated separately for each dataset and the results for each ar
 
 The breakdown of each table is:
 
-1. [An abridged results file](#summary) (i.e. *summary.fits*) &mdash; ***This is the most relevant file for the average reader.*** It contains the final apodised fluxes for each filter (where available) and for each galaxy in the dataset, averaged across all pointings.
+1. [An abridged results file](#summary) (i.e. *summary.fits*) &mdash; ***This is the most relevant file for the average reader.*** It contains the final apodised fluxes for each filter (where available) and for each galaxy in the dataset, averaged across all pointings, as well as the total number of photometric bands with a signal-to-noise ratio greater than or equal to 5 (5-sigma detection).
 2. [An unabridged results file](#summary-detailed) (i.e. *FilterData/summary_detailed.fits*) &mdash; This includes the same columns as in the abridged file, but with the additional inclusion of the background flux estimations and the total non-background-subtracted fluxes through the filters.
 3. [A detailed results file for each pointing](#results) (e.g. *FilterData/\<pointing\>_summary.fits*) &mdash; These tables, provide identical information to the unabridged results files, but for the given pointing only i.e. the tables provide the apodised fluxes, the background estimations and the non-background-subtracted flux totals for each filter without averaging across each pointing. If you are concerned about variation in the slitloss between pointings (e.g. if an object lies close to a slit edge), then these tables may be more useful to you than the abridged results file.
 4. [Raw output files for each filter](#details) (e.g. *RawData/F400W_\<pointing\>*) &mdash; These files contain the raw output used to compile the summary catalogues. Here, detailed information is provided for each available filter of a given pointing, including the pixel coordinates of the source and the aperture, the aperture dimensions and the annulus radii used for background estimates. Most of this data shouldn't be relevant except when needing to follow up on the results for individual sources and/or their slitmask data.
@@ -67,6 +67,7 @@ This table contains the average apodised flux per filter (averaged across the av
 - **Dec:** the declination of the galaxy in degrees. 
 - **Flux**: the background-subtracted flux passing through the aperture, in units of nJy.
 - **Error**: an estimate of the error in the flux, in units of nJy.
+- **Total High SNR Bands (5 Sigma)**: the total number of photometric bands with signal-to-noise greater than or equal to 5 (5-sigma detection).
 
 <div align="right">
 
